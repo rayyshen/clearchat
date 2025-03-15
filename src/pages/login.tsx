@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/initFirebase";
 import { useRouter } from "next/router";
 import { useUser } from "../context/UserContext";
+import Link from "next/link";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ const LoginPage: React.FC = () => {
     <div className="min-h-screen bg-gray-100 text-white p-10">
       <title>Login</title>
       <h1 className="text-3xl text-black text-center p-2.5">Log In</h1>
-      <div className="mx-auto rounded-2xl border-2 shadow-xl bg-white p-5 w-[500px] h-[265px]">
+      <div className="mx-auto rounded-2xl border-2 shadow-xl bg-white p-5 w-[500px] h-[300px]">
         <form onSubmit={handleLogin}>
           <div>
             <label className="text-black text-center block">Email</label>
@@ -56,11 +57,16 @@ const LoginPage: React.FC = () => {
           </div>
 
           <button 
-            className="text-white w-full p-2.5 text-base rounded bg-blue-500 my-2.5 block"
+            className="text-white w-full p-2.5 text-base rounded bg-blue-500 hover:bg-blue-600 transition-colors duration-200 my-2.5 block"
             type="submit"
           >
             Log In
           </button>
+          <text className="text-black w-full p-2.5 text-center block">Don't have an account?&nbsp;
+          <Link href="/signup" className="text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200 text-black w-full">
+          Sign Up
+          </Link>
+          </text>
         </form>
       </div>
     </div>
