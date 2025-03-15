@@ -8,7 +8,7 @@ Created at [Scrapyard NoVA](https://scrapyard.hackclub.com/nova)
 
 Create an account and start chatting with friends at https://hack.ray-shen.me/
 
-## 📦 Install VolunThrive locally
+## 📦 Install ClearChat locally
 
 Use [git](https://git-scm.com/downloads) to install ClearChat.
 
@@ -16,7 +16,7 @@ Use [git](https://git-scm.com/downloads) to install ClearChat.
 git clone https://github.com/rayyshen/clearchat.git
 ```
 
-## 💻 Run VolunThrive locally
+## 💻 Run ClearChat locally
 
 ```bash
 git clone https://github.com/rayyshen/clearchat.git
