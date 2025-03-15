@@ -9,7 +9,7 @@ export interface PrivateMessage {
   id: string;
   text: string;
   senderId: string;
-  timestamp: Date;
+  timestamp: any;
   chatId: string;
   emotion: string;
 }
@@ -20,4 +20,5 @@ export interface Message {
     userId: string;
     username: string;
     timestamp: any;
+    emotion?: string;
 }

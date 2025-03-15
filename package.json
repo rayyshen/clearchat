@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0",
+    "face-api.js": "^0.20.0",
     "firebase": "^11.4.0",
     "lucide-react": "^0.482.0",
     "next": "15.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind": "^4.0.0"
+    "tailwind": "^2.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
