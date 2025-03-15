@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import * as faceapi from 'face-api.js';
 
 import React from "react";
-import Webcam from "react-webcam";
 
 import WebcamCapture from '../components/WebcamCapture';
 
@@ -18,16 +17,11 @@ export default function FacialRecognitionPage() {
             await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
             await faceapi.nets.faceExpressionNet.loadFromUri('/models');
 
-            //const detections = await detectFacesFromImage("https://www.shutterstock.com/image-photo/portrait-sad-man-260nw-126009806.jpg")
-            //console.log('Detections:', detections);
         };
 
 
         loadModelsAndDetectFaces();
     }, []);
-
-    
-    const WebcamComponent = () => <Webcam />;
 
     
 
