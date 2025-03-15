@@ -16,7 +16,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
     const [messages, setMessages] = useState<PrivateMessage[]>([]);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    // Auto-scroll to bottom when new messages arrive
+    // Autoscroll
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };

@@ -1,4 +1,3 @@
-// pages/signup.tsx
 import React, { useState } from "react";
 import type { FormEvent } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -18,11 +17,11 @@ const SignUpPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      // 1. Create user in Firebase Auth
+      // Create user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // 2. Create/Update user profile in Firestore
+      // Create/Update user profile in Firestore
       const userProfile: UserProfile = {
         name,
         email: user.email ?? "",
@@ -32,7 +31,7 @@ const SignUpPage: React.FC = () => {
 
       console.log("User created and profile saved:", user.uid);
 
-      // redirect after signup
+      // Redirect
       router.push("/chat");
     } catch (error) {
       console.error("Sign up error:", error);
