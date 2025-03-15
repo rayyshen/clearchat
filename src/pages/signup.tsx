@@ -5,6 +5,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/initFirebase";
 import { UserProfile } from "../types/user";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -39,15 +40,15 @@ const SignUpPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#282c34] text-white p-10">
+    <div className="min-h-screen bg-gray-100 text-white p-10">
       <title>Signup</title>
-      <h1 className="text-3xl text-white text-center p-2.5">Sign Up</h1>
-      <div className="mx-auto rounded-2xl border-2 border-[#494a4b] bg-white p-5 w-[500px] h-[350px]">
+      <h1 className="text-3xl text-black text-center p-2.5">Sign Up</h1>
+      <div className="mx-auto rounded-2xl border-2 shadow-xl bg-white p-5 w-[500px] h-[385px]">
         <form onSubmit={handleSignUp}>
           <div>
             <label className="text-black text-center block">Name</label>
             <input
-              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              className="text-black w-full p-2.5 text-base rounded border-2 border-gray-100 my-1.5 block"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -58,7 +59,7 @@ const SignUpPage: React.FC = () => {
           <div>
             <label className="text-black text-center block">Email</label>
             <input
-              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              className="text-black w-full p-2.5 text-base rounded border-2 border-gray-100 my-1.5 block"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -69,7 +70,7 @@ const SignUpPage: React.FC = () => {
           <div>
             <label className="text-black text-center block">Password</label>
             <input 
-              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              className="text-black w-full p-2.5 text-base rounded border-2 border-gray-100 my-1.5 block"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -78,11 +79,17 @@ const SignUpPage: React.FC = () => {
           </div>
 
           <button 
-            className="text-black w-full p-2.5 text-base rounded bg-[deepskyblue] my-2.5 block"
+            className="text-white w-full p-2.5 text-base rounded bg-blue-500 hover:bg-blue-600 transition-colors duration-200 my-2.5 block"
             type="submit"
           >
             Sign Up
           </button>
+
+          <text className="text-black w-full p-2.5 text-center block">Already have an account?&nbsp;
+          <Link href="/login" className="text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200 text-black w-full">
+          Log in
+          </Link>
+          </text>
         </form>
       </div>
     </div>
