@@ -1,6 +1,8 @@
 import React from "react";
 import Webcam from "react-webcam";
 
+import { detectFacesFromImage } from "../functions/FacialAnalysis";
+
 const WebcamComponent = () => <Webcam />;
 
 const videoConstraints = {
@@ -14,6 +16,13 @@ const videoConstraints = {
     const capture = React.useCallback(
       () => {
         const imageSrc = webcamRef.current?.getScreenshot();
+
+
+        var screenshotImage = new Image();
+        screenshotImage.src = imageSrc as string;
+        //document.body.appendChild(screenshotImage);
+        detectFacesFromImage(screenshotImage);
+
       },
       [webcamRef]
     );
@@ -23,7 +32,7 @@ const videoConstraints = {
           audio={false}
           height={720}
           ref={webcamRef}
-          screenshotFormat="image/jpeg"
+          //screenshotFormat="image/jpeg"
           width={1280}
           videoConstraints={videoConstraints}
         />

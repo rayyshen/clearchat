@@ -18,8 +18,8 @@ export default function FacialRecognitionPage() {
             await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
             await faceapi.nets.faceExpressionNet.loadFromUri('/models');
 
-            const detections = await detectFacesFromImage("https://www.shutterstock.com/image-photo/portrait-sad-man-260nw-126009806.jpg")
-            console.log('Detections:', detections);
+            //const detections = await detectFacesFromImage("https://www.shutterstock.com/image-photo/portrait-sad-man-260nw-126009806.jpg")
+            //console.log('Detections:', detections);
         };
 
 
