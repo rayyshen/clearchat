@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/initFirebase";
 import { useRouter } from "next/router";
 import { useUser } from "../context/UserContext";
-import './login.css';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -29,35 +28,40 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#282c34] text-white p-10">
       <title>Login</title>
-      <h1 className="Header">Log In</h1>
-      <div id="rcornersbox">
-      <form onSubmit={handleLogin}>
-        <div>
-          <label className="Label">Email <br></br></label>
-          <input 
-            id="input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-          />
-        </div>
+      <h1 className="text-3xl text-white text-center p-2.5">Log In</h1>
+      <div className="mx-auto rounded-2xl border-2 border-[#494a4b] bg-white p-5 w-[500px] h-[265px]">
+        <form onSubmit={handleLogin}>
+          <div>
+            <label className="text-black text-center block">Email</label>
+            <input 
+              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div>
-          <label className="Label">Password <br></br></label>
-          <input 
-            id="input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-          />
-        </div>
+          <div>
+            <label className="text-black text-center block">Password</label>
+            <input 
+              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <button id="button" type="submit">Log In</button>
-      </form>
+          <button 
+            className="text-black w-full p-2.5 text-base rounded bg-[deepskyblue] my-2.5 block"
+            type="submit"
+          >
+            Log In
+          </button>
+        </form>
       </div>
     </div>
   );
