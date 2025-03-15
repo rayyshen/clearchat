@@ -1,0 +1,49 @@
+body {
+    background-color: #282c34;
+    color: #ffffff;
+    padding: 40px;
+  }
+
+#input {
+    color: black;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #494a4b;
+    margin: 5px auto;
+    display: block;
+}
+
+.Label {
+    color: #000000;
+    text-align: center;
+}
+
+.Header {
+    padding: 10px;
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#button {
+    color: #000000;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background: deepskyblue;
+    margin: 10px auto;
+    display: block;
+  }
+
+#rcornersbox {
+    margin: auto;
+    border-radius: 20px;
+    border: 2px solid #494a4b;
+    background: #ffffff;
+    padding: 20px;
+    width: 500px;
+    height: 350px;
+  }
