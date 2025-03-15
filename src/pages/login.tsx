@@ -1,4 +1,3 @@
-// pages/login.tsx
 import React, { useState, useEffect } from "react";
 import type { FormEvent } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";

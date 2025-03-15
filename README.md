@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# [🔎💬  ClearChat](https://hack.ray-shen.me/)
 
-## Getting Started
+ClearChat is a messaging app designed to revolutionize digital communication by integrating real-time facial sentiment analysis into every chat. By capturing the sender’s genuine emotional response through advanced AI-driven facial recognition, each message carries authentic emotional context, reducing misunderstandings and enhancing empathy between users. In an era where digital conversations often obscure genuine emotions, ClearChat bridges the gap, fostering more transparent, meaningful, and human connections. 
 
-First, run the development server:
+Created at [Scrapyard NoVA](https://scrapyard.hackclub.com/nova)
+
+## [🌍 Live demo](https://hack.ray-shen.me/)
+
+Create an account and start chatting with friends at https://hack.ray-shen.me/
+
+## 📦 Install VolunThrive locally
+
+Use [git](https://git-scm.com/downloads) to install ClearChat.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/rayyshen/clearchat.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💻 Run VolunThrive locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+git clone https://github.com/rayyshen/clearchat.git
+npm install
+npm run dev
+```
+## 🤔 How it works
+ClearChat transforms traditional messaging by embedding genuine emotions directly into every message. Users securely sign up and log in using Firebase Authentication, ensuring quick and reliable access. Real-time messages are stored with Firestore Database, guaranteeing immediate delivery and consistent availability among users.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+As messages are created, ClearChat uses the [Face-api.js](https://justadudewhohacks.github.io/face-api.js/docs/index.html) library to perform real-time facial sentiment analysis via webcam, accurately capturing emotions such as happiness, sadness, surprise, or frustration. Built on Next.js and styled with Tailwind CSS, ClearChat offers a fast, intuitive, and visually appealing user interface, providing a seamless, authentic chat experience across all platforms.
 
-## Learn More
+## 💞 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-To learn more about Next.js, take a look at the following resources:
+Please make sure to update tests as appropriate.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authors
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [@rayyshen](https://www.github.com/rayyshen)
+- [@FelixTrask](https://github.com/FelixTrask)
+- [@George-Taco](https://github.com/George-Taco)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔑 License
+[MIT](https://choosealicense.com/licenses/mit/)
