@@ -2,7 +2,7 @@ body {
     background-color: #282c34;
     color: #ffffff;
     padding: 40px;
-}
+  }
 
 #input {
     width: 100%;
@@ -44,5 +44,5 @@ body {
     background: #ffffff;
     padding: 20px;
     width: 500px;
-    height: 265px;
+    height: 350px;
   }

@@ -5,6 +5,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/initFirebase";
 import { UserProfile } from "../types/user";
 import { useRouter } from "next/router";
+import './signup.css';
 
 const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -40,11 +41,14 @@ const SignUpPage: React.FC = () => {
 
   return (
     <div>
-      <h1>Sign Up</h1>
+      <title>Signup</title>
+      <h1 className="Header">Sign Up</h1>
+      <div id="rcornersbox">
       <form onSubmit={handleSignUp} >
         <div>
-          <label>Name</label>
+          <label className="Label">Name</label>
           <input
+            id="input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -53,8 +57,9 @@ const SignUpPage: React.FC = () => {
         </div>
 
         <div>
-          <label>Email</label>
+          <label className="Label">Email</label>
           <input
+            id="input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -63,8 +68,9 @@ const SignUpPage: React.FC = () => {
         </div>
 
         <div>
-          <label>Password</label>
+          <label className="Label">Password</label>
           <input 
+            id="input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -72,8 +78,9 @@ const SignUpPage: React.FC = () => {
           />
         </div>
 
-        <button type="submit">Sign Up</button>
+        <button id="button" type="submit">Sign Up</button>
       </form>
+      </div>
     </div>
   );
 };
