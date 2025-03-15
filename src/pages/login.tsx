@@ -28,15 +28,15 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#282c34] text-white p-10">
+    <div className="min-h-screen bg-gray-100 text-white p-10">
       <title>Login</title>
-      <h1 className="text-3xl text-white text-center p-2.5">Log In</h1>
-      <div className="mx-auto rounded-2xl border-2 border-[#494a4b] bg-white p-5 w-[500px] h-[265px]">
+      <h1 className="text-3xl text-black text-center p-2.5">Log In</h1>
+      <div className="mx-auto rounded-2xl border-2 shadow-xl bg-white p-5 w-[500px] h-[265px]">
         <form onSubmit={handleLogin}>
           <div>
             <label className="text-black text-center block">Email</label>
             <input 
-              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              className="text-black w-full p-2.5 text-base rounded border-2 border-gray-100 my-1.5 block"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)} 
@@ -47,7 +47,7 @@ const LoginPage: React.FC = () => {
           <div>
             <label className="text-black text-center block">Password</label>
             <input 
-              className="text-black w-full p-2.5 text-base rounded border-2 border-[#494a4b] my-1.5 block"
+              className="text-black w-full p-2.5 text-base rounded border-2 border-gray-100 my-1.5 block"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)} 
@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
           </div>
 
           <button 
-            className="text-black w-full p-2.5 text-base rounded bg-[deepskyblue] my-2.5 block"
+            className="text-white w-full p-2.5 text-base rounded bg-blue-500 my-2.5 block"
             type="submit"
           >
             Log In
