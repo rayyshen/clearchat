@@ -11,6 +11,7 @@ export interface PrivateMessage {
   senderId: string;
   timestamp: Date;
   chatId: string;
+  emotion: string;
 }
 
 export interface Message {

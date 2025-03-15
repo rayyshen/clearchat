@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/initFirebase';
 import { PrivateMessage } from '../types/chat';
 import { Send } from 'lucide-react';
@@ -28,7 +28,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
     useEffect(() => {
         const messagesRef = collection(db, `privateChats/${chatId}/messages`);
         const q = query(messagesRef, orderBy('timestamp', 'asc'));
-        
+
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const messageList = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -46,10 +46,18 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     };
 
+    const handleEmotion = async (messageId: string, emotion: string) => {
+        const messageRef = doc(db, `privateChats/${chatId}/messages/${messageId}`);
+        await updateDoc(messageRef, {
+            emotions: {
+                [currentUser.uid]: emotion
+            }
+        });
+    };
+
     return (
-        <>
-            {/* Message List */}
-            <div className="flex-1 p-4 overflow-y-auto">
+        <div className="flex-1 flex flex-col">
+            <div className="flex-1 overflow-y-auto p-4">
                 {messages.length === 0 ? (
                     <div className="flex items-center justify-center h-full">
                         <div className="text-center text-gray-500">
@@ -72,18 +80,16 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
                                 >
                                     <div className={`max-w-xs md:max-w-md lg:max-w-lg ${isSentByMe ? 'items-end' : 'items-start'}`}>
                                         <div
-                                            className={`px-4 py-2 rounded-lg ${
-                                                isSentByMe
+                                            className={`px-4 py-2 rounded-lg ${isSentByMe
                                                     ? 'bg-blue-500 text-white rounded-br-none'
                                                     : 'bg-gray-100 text-gray-800 rounded-bl-none'
-                                            }`}
+                                                }`}
                                         >
                                             <p>{message.text}</p>
                                         </div>
-                                        <div 
-                                            className={`text-xs mt-1 ${
-                                                isSentByMe ? 'text-right text-gray-500' : 'text-left text-gray-500'
-                                            }`}
+                                        <div
+                                            className={`text-xs mt-1 ${isSentByMe ? 'text-right text-gray-500' : 'text-left text-gray-500'
+                                                }`}
                                         >
                                             {formatTime(message.timestamp)}
                                             {isSentByMe ? ' • Sent' : ' • Received'}
@@ -110,17 +116,16 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
                     <button
                         type="submit"
                         disabled={!newMessage.trim()}
-                        className={`p-3 rounded-lg ${
-                            newMessage.trim() 
-                                ? 'bg-blue-500 text-white hover:bg-blue-600' 
+                        className={`p-3 rounded-lg ${newMessage.trim()
+                                ? 'bg-blue-500 text-white hover:bg-blue-600'
                                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                        } transition-colors duration-200`}
+                            } transition-colors duration-200`}
                     >
                         <Send size={20} />
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     );
 };
 
