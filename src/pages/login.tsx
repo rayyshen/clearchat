@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/initFirebase";
 import { useRouter } from "next/router";
 import { useUser } from "../context/UserContext";
+import './login.css';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -30,11 +31,14 @@ const LoginPage: React.FC = () => {
 
   return (
     <div>
-      <h1>Log In</h1>
+      <title>Login</title>
+      <h1 className="Header">Log In</h1>
+      <div id="rcornersbox">
       <form onSubmit={handleLogin}>
         <div>
-          <label>Email</label>
+          <label className="Label">Email <br></br></label>
           <input 
+            id="input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)} 
@@ -43,8 +47,9 @@ const LoginPage: React.FC = () => {
         </div>
 
         <div>
-          <label>Password</label>
+          <label className="Label">Password <br></br></label>
           <input 
+            id="input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)} 
@@ -52,8 +57,9 @@ const LoginPage: React.FC = () => {
           />
         </div>
 
-        <button type="submit">Log In</button>
+        <button id="button" type="submit">Log In</button>
       </form>
+      </div>
     </div>
   );
 };
