@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { collection, addDoc, onSnapshot, query, orderBy, where, getDocs } from 'firebase/firestore';
-import { db } from '../firebase/initFirebase'; 
+import { db, auth } from '../firebase/initFirebase';
 import { useRouter } from 'next/router';
 import { useUser } from '../context/UserContext';
 import { PrivateChat, PrivateMessage, Message } from '../types/chat';
 import PrivateChatMessages from '../components/PrivateChatMessages';
 import SignOutButton from '@/components/SignOutButton';
 import { UserCircle, MessageSquare, ArrowLeft, Send } from 'lucide-react';
+import Link from 'next/link';
 
 
 interface User {
-  uid: string;
-  name: string;
-  email: string;
+    uid: string;
+    name: string;
+    email: string;
 }
 
 const ChatPage = () => {
@@ -23,6 +24,7 @@ const ChatPage = () => {
     const [newMessage, setNewMessage] = useState('');
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [username, setUsername] = useState<string>('');
     const router = useRouter();
     const { user } = useUser();
 
@@ -47,7 +49,7 @@ const ChatPage = () => {
         // Subscribe to private chats
         const chatsRef = collection(db, 'privateChats');
         const q = query(chatsRef, where('participants', 'array-contains', user.uid));
-        
+
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const chats = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -59,10 +61,20 @@ const ChatPage = () => {
         return () => unsubscribe();
     }, [user, router]);
 
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUsername(user.email || user.displayName || '');
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
     const startPrivateChat = async (otherUser: User) => {
         setSelectedUser(otherUser);
-        const chatExists = privateChats.find(chat => 
-            chat.participants.includes(otherUser.uid) && 
+        const chatExists = privateChats.find(chat =>
+            chat.participants.includes(otherUser.uid) &&
             chat.participants.includes(user!.uid)
         );
 
@@ -101,7 +113,7 @@ const ChatPage = () => {
         setSelectedChat(null);
     };
 
-    const filteredUsers = users.filter(u => 
+    const filteredUsers = users.filter(u =>
         (u.name?.toLowerCase() || u.email?.toLowerCase() || '').includes(searchTerm.toLowerCase())
     );
 
@@ -117,8 +129,16 @@ const ChatPage = () => {
         <div className="flex flex-col h-screen bg-gray-50">
             {/* Header */}
             <header className="bg-white shadow-sm p-4 flex justify-between items-center">
-                <div className="text-xl font-semibold text-gray-800">Chat App</div>
-                <SignOutButton className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors duration-200 flex items-center gap-2" />
+                <Link href="/"><div className="text-xl font-semibold text-gray-800">ClearChat</div></Link>
+                <div className="flex items-center gap-4">
+                    {username && <span className="text-sm">{user.name}</span>}
+                    <div className="h-8 w-8 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center">
+                        <span className="text-sm font-medium">
+                            {username ? user.email?.charAt(0).toUpperCase() || 'U' : 'G'}
+                        </span>
+                    </div>
+                    <SignOutButton className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors duration-200 flex items-center gap-2" />
+                </div>
             </header>
 
             {/* Main Content */}
@@ -128,7 +148,7 @@ const ChatPage = () => {
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <div className="p-4 border-b border-gray-100">
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Contacts</h2>
-                            
+
                             {/* Search bar */}
                             <div className="relative mb-4">
                                 <input
@@ -144,7 +164,7 @@ const ChatPage = () => {
                                     </svg>
                                 </span>
                             </div>
-                            
+
                             {/* User list */}
                             <div className="max-h-96 overflow-y-auto">
                                 {filteredUsers.length > 0 ? (
@@ -196,11 +216,11 @@ const ChatPage = () => {
                                 )}
                             </div>
                         </div>
-                        
+
                         {/* Chat Messages */}
                         {selectedChat && (
                             <div className="flex-1 overflow-hidden flex flex-col">
-                                <PrivateChatMessages 
+                                <PrivateChatMessages
                                     chatId={selectedChat}
                                     currentUser={user}
                                     onSend={sendPrivateMessage}
