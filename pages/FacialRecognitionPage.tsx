@@ -2,25 +2,21 @@
 
 import { useEffect } from 'react';
 import * as faceapi from 'face-api.js';
-
 import React from "react";
-
-import WebcamCapture from '../components/WebcamCapture';
+import WebcamCapture from '../src/components/WebcamCapture';
 
 
 
 export default function FacialRecognitionPage() {
     useEffect(() => {
-        const loadModelsAndDetectFaces = async () => {
+        const loadModels = async () => {
 
             await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
             await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
             await faceapi.nets.faceExpressionNet.loadFromUri('/models');
 
         };
-
-
-        loadModelsAndDetectFaces();
+        loadModels();
     }, []);
 
     

@@ -1,7 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 
-import { detectFacesFromImage } from "../functions/FacialAnalysis";
+import { detectFacesFromImage } from "../../functions/FacialAnalysis";
 
 const WebcamComponent = () => <Webcam />;
 

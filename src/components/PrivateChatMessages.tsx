@@ -3,6 +3,8 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase/initFirebase';
 import { PrivateMessage } from '../types/chat';
 import { Send } from 'lucide-react';
+import * as faceapi from 'face-api.js';
+import WebcamCapture from './WebcamCapture';
 
 interface Props {
     chatId: string;
@@ -21,6 +23,16 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
 
     // Initialize video
     useEffect(() => {
+
+        const loadModels = async () => {
+
+            await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+            await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
+            await faceapi.nets.faceExpressionNet.loadFromUri('/models');
+
+        };
+        loadModels();
+
         const initializeVideo = async () => {
             try {
                 setIsLoading(true);
@@ -85,7 +97,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
         if (newMessage.trim()) {
-            await onSend(newMessage, ''); // Providing empty string as emotion
+            await onSend(newMessage, ''); // Providing empty string as emotionsss
             setNewMessage('');
         }
     };
