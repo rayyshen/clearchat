@@ -14,6 +14,7 @@ const SignUpPage: React.FC = () => {
   const router = useRouter();
 
   const handleSignUp = async (e: FormEvent) => {
+    console.log(email, name);
     e.preventDefault();
 
     try {
@@ -41,7 +42,7 @@ const SignUpPage: React.FC = () => {
   return (
     <div>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleSignUp} >
         <div>
           <label>Name</label>
           <input

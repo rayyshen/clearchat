@@ -12,3 +12,11 @@ export interface PrivateMessage {
   timestamp: Date;
   chatId: string;
 }
+
+export interface Message {
+    id: string;
+    text: string;
+    userId: string;
+    username: string;
+    timestamp: any;
+}
