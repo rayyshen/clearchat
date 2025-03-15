@@ -11,11 +11,17 @@ const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const router = useRouter();
 
   const handleSignUp = async (e: FormEvent) => {
-    console.log(email, name);
     e.preventDefault();
+    
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long");
+      return;
+    }
+    setPasswordError("");
 
     try {
       // Create user in Firebase Auth
@@ -76,6 +82,9 @@ const SignUpPage: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               required 
             />
+            {passwordError && (
+              <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+            )}
           </div>
 
           <button 
