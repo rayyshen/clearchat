@@ -161,8 +161,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
                 )}
             </div>
 
-            {/* Message Input */}
-            <div className="border-t p-3 mt-auto bg-white">
+            <div className="border-t p-3 bg-white">
                 <form onSubmit={handleSend} className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                         <div className="flex-1">

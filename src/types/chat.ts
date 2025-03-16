@@ -15,10 +15,12 @@ export interface PrivateMessage {
 }
 
 export interface Message {
-    id: string;
-    text: string;
-    userId: string;
-    username: string;
-    timestamp: any;
-    emotion?: string;
+  id: string;
+  text: string;
+  userId: string;
+  username: string;
+  timestamp: Date;
+  emotion: string;
+  senderId: string;
+  chatId: string;
 }
