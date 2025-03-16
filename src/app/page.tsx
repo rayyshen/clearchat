@@ -163,7 +163,7 @@ export default function Home() {
               <Link href="/signup" className="px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 Get Started Free
               </Link>
-              <Link href="https://github.com/rayyshen/clearchat/tree/hailmary" target="_blank" className="px-8 py-4 bg-white hover:bg-gray-100 text-gray-800 font-medium rounded-lg text-lg border border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+              <Link href="https://github.com/rayyshen/clearchat/" target="_blank" className="px-8 py-4 bg-white hover:bg-gray-100 text-gray-800 font-medium rounded-lg text-lg border border-gray-300 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
                 Learn More
               </Link>
             </div>
