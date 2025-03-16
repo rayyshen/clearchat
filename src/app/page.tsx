@@ -92,9 +92,9 @@ export default function Home() {
   // Sample chat messages for animation
   const chatMessages = [
     { id: 1, text: "Hey, how are you doing today?", emotion: "Curious", time: "10:32 AM", isSender: false },
-    { id: 2, text: "I'm doing great! Just finished a big project.", emotion: "Excited", time: "10:33 AM", isSender: true },
-    { id: 3, text: "That's awesome! How did the presentation go?", emotion: "Interested", time: "10:34 AM", isSender: false },
-    { id: 4, text: "It went really well, the client loved it!", emotion: "Happy", time: "10:36 AM", isSender: true }
+    { id: 2, text: "I'm doing good", emotion: "Sad", time: "10:33 AM", isSender: true },
+    { id: 3, text: "Aw man, are you sure you're doing okay.", emotion: "Interested", time: "10:34 AM", isSender: false },
+    { id: 4, text: "You didn't do anything to ruin my day.", emotion: "Mad", time: "10:36 AM", isSender: true }
   ];
 
   // Custom styles for animations
@@ -176,11 +176,7 @@ export default function Home() {
                       <div className="bg-blue-100 text-blue-600 rounded-full p-2 mr-3">
                         <Users size={20} />
                       </div>
-                      <h3 className="font-semibold text-gray-800">Team Chat</h3>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-                      <span className="text-sm text-gray-500">3 Online</span>
+                      <h3 className="font-semibold text-gray-800">Private Chat</h3>
                     </div>
                   </div>
                   <div className="flex-1 p-4 flex flex-col overflow-y-auto">
