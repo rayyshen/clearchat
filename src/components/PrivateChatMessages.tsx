@@ -177,7 +177,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
                                 value={newMessage}
                                 onChange={(e) => setNewMessage(e.target.value)}
                                 placeholder="Type a message..."
-                                className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
                             />
                         </div>
                         <div className="flex flex-col items-center gap-2">

@@ -140,7 +140,7 @@ export default function Home() {
               <Link href="/signup" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
                 Sign Up Free
               </Link>
-              <Link href="https://github.com/rayyshen/clearchat/" target="_blank"><Github></Github></Link>
+              <Link href="https://github.com/rayyshen/clearchat/" target="_blank"><Github className="text-black"></Github></Link>
             </div>
           </div>
         </header>
