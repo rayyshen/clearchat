@@ -25,12 +25,12 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         const initializeVideo = async () => {
             try {
                 setIsLoading(true);
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { 
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
                         width: 128,
                         height: 96,
                         facingMode: 'user'
-                    } 
+                    }
                 });
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
