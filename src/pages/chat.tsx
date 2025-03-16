@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { collection, addDoc, onSnapshot, query, orderBy, where, getDocs } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, query, where, getDocs } from 'firebase/firestore';
 import { db, auth } from '../firebase/initFirebase';
 import { useRouter } from 'next/router';
 import { useUser } from '../context/UserContext';
-import { PrivateChat, PrivateMessage, Message } from '../types/chat';
+import { PrivateChat } from '../types/chat';
 import PrivateChatMessages from '../components/PrivateChatMessages';
 import SignOutButton from '@/components/SignOutButton';
-import { UserCircle, MessageSquare, ArrowLeft, Send, Plus, Search, Users, Bell, LogOut, MessageSquareText } from 'lucide-react';
+import { MessageSquare, ArrowLeft, Search, Users, LogOut, MessageSquareText } from 'lucide-react';
 import Link from 'next/link';
 import Head from 'next/head';
 
@@ -17,15 +17,12 @@ interface User {
 }
 
 const ChatPage = () => {
-    const [messages, setMessages] = useState<Message[]>([]);
     const [privateChats, setPrivateChats] = useState<PrivateChat[]>([]);
     const [selectedChat, setSelectedChat] = useState<string | null>(null);
     const [users, setUsers] = useState<User[]>([]);
     const [newMessage, setNewMessage] = useState('');
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [username, setUsername] = useState<string>('');
-    const [recentChats, setRecentChats] = useState<PrivateChat[]>([]);
     const router = useRouter();
     const { user } = useUser();
 
@@ -68,10 +65,7 @@ const ChatPage = () => {
                 ...doc.data()
             })) as PrivateChat[];
             setPrivateChats(chats);
-            
-            // Sort by most recent and set as recent chats
-            // In a real app, you'd want to sort by the timestamp of the last message
-            setRecentChats(chats.slice(0, 5));
+
         });
 
         return () => unsubscribe();
@@ -80,7 +74,6 @@ const ChatPage = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                setUsername(user.email || user.displayName || '');
             }
         });
 
@@ -151,7 +144,7 @@ const ChatPage = () => {
                 <meta name="description" content="Chat with emotional context in ClearChat" />
                 <style>{animationStyles}</style>
             </Head>
-            
+
             <header className="bg-white shadow-sm py-3 px-4 flex justify-between items-center">
                 <Link href="/" className="flex items-center">
                     <span className="text-blue-600 mr-2">
@@ -161,7 +154,7 @@ const ChatPage = () => {
                 </Link>
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium text-gray-700 hidden md:block">{user.name || user.email?.split('@')[0]}</span>
+                        <span className="text-sm font-medium text-gray-700 hidden md:block">{user.name || user.email?.split('@')[0]}</span>
                         <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white flex items-center justify-center shadow-md">
                             <span className="text-sm font-medium">
                                 {user.name?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase() || 'U'}
@@ -184,17 +177,17 @@ const ChatPage = () => {
                                     <div className="p-4 border-b border-gray-100 flex justify-between items-center">
                                         <h2 className="text-lg font-semibold text-gray-800">Recent Chats</h2>
                                     </div>
-                                    
+
                                     <div className="divide-y divide-gray-100 max-h-96 overflow-y-auto">
                                         {privateChats.length > 0 ? (
                                             privateChats.map(chat => {
                                                 const otherUserIds = chat.participants.filter(id => id !== user.uid);
                                                 const otherUser = users.find(u => u.uid === otherUserIds[0]);
-                                                
+
                                                 if (!otherUser) return null;
-                                                
+
                                                 return (
-                                                    <div 
+                                                    <div
                                                         key={chat.id}
                                                         onClick={() => startPrivateChat(otherUser)}
                                                         className="p-3 hover:bg-blue-50 cursor-pointer transition-colors duration-200 flex items-center"
@@ -221,12 +214,12 @@ const ChatPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className="lg:col-span-2">
                                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                                     <div className="p-4 border-b border-gray-100 flex flex-col">
                                         <h2 className="text-lg font-semibold text-gray-800 mb-4">Contacts</h2>
-                                        
+
                                         <div className="relative">
                                             <input
                                                 type="text"
@@ -240,7 +233,7 @@ const ChatPage = () => {
                                             </span>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="max-h-96 overflow-y-auto p-2">
                                         {filteredUsers.length > 0 ? (
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -315,7 +308,7 @@ const ChatPage = () => {
                     </div>
                 )}
             </main>
-            
+
         </div>
     );
 };

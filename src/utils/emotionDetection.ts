@@ -1,6 +1,3 @@
-const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent";
-
 export async function detectEmotion(imageBase64: string): Promise<string> {
     try {
         const response = await fetch('/api/detect-emotion', {

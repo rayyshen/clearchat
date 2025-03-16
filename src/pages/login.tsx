@@ -34,11 +34,11 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setLoginError("");
-    
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       // Context will automatically update and redirect
-    } catch (error: any) {
+    } catch (error) {
       console.error("Login error:", error);
       setLoginError("Invalid email or password. Please try again.");
     }
@@ -84,7 +84,7 @@ const LoginPage: React.FC = () => {
         <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
         <div className="absolute top-32 right-20 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-80 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
-        
+
         <div className="max-w-md w-full z-10">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
@@ -93,14 +93,14 @@ const LoginPage: React.FC = () => {
 
           <div className="bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:shadow-2xl">
             <div className="absolute -top-2 left-8 w-16 h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 rounded"></div>
-            
+
             <form onSubmit={handleLogin} className="space-y-5">
               {loginError && (
                 <div className="bg-red-50 text-red-500 p-3 rounded-lg text-sm">
                   {loginError}
                 </div>
               )}
-              
+
               <div>
                 <label className="text-gray-700 font-medium mb-1 block flex items-center">
                   <Mail size={16} className="mr-2 text-blue-500" />
@@ -121,26 +121,26 @@ const LoginPage: React.FC = () => {
                   <Lock size={16} className="mr-2 text-blue-500" />
                   Password
                 </label>
-                <input 
+                <input
                   className="w-full p-3 text-gray-800 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-300 focus:border-blue-500 transition duration-200 focus:outline-none"
                   type="password"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  required 
+                  required
                 />
               </div>
 
-              <button 
+              <button
                 className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center"
                 type="submit"
               >
                 Log In <ArrowRight size={18} className="ml-2" />
               </button>
-            
+
 
               <div className="pt-4 text-center text-gray-600">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/signup" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
                   Sign up for free
                 </Link>

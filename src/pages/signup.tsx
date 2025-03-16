@@ -28,7 +28,7 @@ const SignUpPage: React.FC = () => {
 
   const handleSignUp = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     if (password.length < 6) {
       setPasswordError("Password must be at least 6 characters long");
       return;
@@ -98,16 +98,16 @@ const SignUpPage: React.FC = () => {
         <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
         <div className="absolute top-32 right-20 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-80 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
-        
+
         <div className="max-w-md w-full z-10">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h2>
             <p className="text-gray-600">Join thousands enhancing their conversations with emotional context</p>
           </div>
-          
+
           <div className="bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:shadow-2xl">
             <div className="absolute -top-2 left-8 w-16 h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 rounded"></div>
-            
+
             <form onSubmit={handleSignUp} className="space-y-5">
               <div>
                 <label className="text-gray-700 font-medium mb-1 block flex items-center">
@@ -144,37 +144,25 @@ const SignUpPage: React.FC = () => {
                   <Lock size={16} className="mr-2 text-blue-500" />
                   Password
                 </label>
-                <input 
+                <input
                   className="w-full p-3 text-gray-800 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-300 focus:border-blue-500 transition duration-200 focus:outline-none"
                   type="password"
                   placeholder="Create a secure password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  required 
+                  required
                 />
                 {passwordError && (
                   <p className="text-red-500 text-sm mt-1">{passwordError}</p>
                 )}
               </div>
 
-              <button 
+              <button
                 className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center"
                 type="submit"
               >
                 Create Account <ArrowRight size={18} className="ml-2" />
               </button>
-
-              <div className="pt-4 space-y-3">
-                <div className="flex items-center text-sm text-gray-600">
-                  <Check size={16} className="mr-2 text-green-500" /> Real-time emotion analysis
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Check size={16} className="mr-2 text-green-500" /> End-to-end encryption
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Check size={16} className="mr-2 text-green-500" /> Free for all users
-                </div>
-              </div>
 
               <div className="pt-4 text-center text-gray-600">
                 Already have an account?{" "}
@@ -184,15 +172,7 @@ const SignUpPage: React.FC = () => {
               </div>
             </form>
           </div>
-          
-          <div className="mt-8 text-center">
-            <p className="text-gray-500 text-sm flex items-center justify-center">
-              <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
-              </svg>
-              Trusted by 5,000+ users worldwide
-            </p>
-          </div>
+
         </div>
       </div>
 

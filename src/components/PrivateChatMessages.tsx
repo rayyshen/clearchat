@@ -7,7 +7,7 @@ import { detectEmotion } from '../utils/emotionDetection';
 
 interface Props {
     chatId: string;
-    currentUser: any;
+    currentUser: { uid: string };
     onSend: (message: string, emotion: string) => Promise<void>;
     newMessage: string;
     setNewMessage: (message: string) => void;
@@ -77,9 +77,9 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         return () => unsubscribe();
     }, [chatId]);
 
-    const formatTime = (timestamp: any) => {
+    const formatTime = (timestamp: Date) => {
         if (!timestamp) return '';
-        const date = timestamp.toDate();
+        const date = timestamp;
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     };
 

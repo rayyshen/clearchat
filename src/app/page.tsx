@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Head from 'next/head';
-import { MessageSquareText, Smile, Users, Shield, ArrowRight, BellRing, Zap, Globe, Check } from 'lucide-react';
+import { MessageSquareText, Smile, Users, Shield, ArrowRight } from 'lucide-react';
 
 
 import Link from "next/link";
