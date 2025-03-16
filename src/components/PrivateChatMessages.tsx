@@ -3,6 +3,7 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase/initFirebase';
 import { PrivateMessage } from '../types/chat';
 import { Send } from 'lucide-react';
+import { detectEmotion } from '../utils/emotionDetection';
 
 interface Props {
     chatId: string;
@@ -24,12 +25,12 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         const initializeVideo = async () => {
             try {
                 setIsLoading(true);
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { 
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
                         width: 128,
                         height: 96,
                         facingMode: 'user'
-                    } 
+                    }
                 });
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
@@ -82,17 +83,34 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     };
 
+    const captureFrame = (): Promise<string> => {
+        return new Promise((resolve) => {
+            if (!videoRef.current) {
+                resolve('');
+                return;
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = videoRef.current.videoWidth;
+            canvas.height = videoRef.current.videoHeight;
+            canvas.getContext('2d')?.drawImage(videoRef.current, 0, 0);
+            resolve(canvas.toDataURL('image/jpeg'));
+        });
+    };
+
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
         if (newMessage.trim()) {
-            await onSend(newMessage, ''); // Providing empty string as emotion
+            const frameBase64 = await captureFrame();
+            const emotion = await detectEmotion(frameBase64);
+            console.log(emotion);
+            await onSend(newMessage, emotion);
             setNewMessage('');
         }
     };
 
     return (
-        <div className="flex-1 flex flex-col">
-            <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 flex flex-col h-full">
+            <div className="flex-1 overflow-y-auto p-4 min-h-0">
                 {messages.length === 0 ? (
                     <div className="flex items-center justify-center h-full">
                         <div className="text-center text-gray-500">
@@ -143,8 +161,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
                 )}
             </div>
 
-            {/* Message Input */}
-            <div className="border-t p-3">
+            <div className="border-t p-3 bg-white">
                 <form onSubmit={handleSend} className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                         <div className="flex-1">

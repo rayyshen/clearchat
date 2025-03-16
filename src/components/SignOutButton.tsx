@@ -5,6 +5,7 @@ import { auth } from "../firebase/initFirebase";
 
 interface SignOutButtonProps {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const SignOutButton = ({ className = '' }: SignOutButtonProps) => {
