@@ -1,7 +1,7 @@
 "use client";
 
 import Head from 'next/head';
-import { MessageSquareText, Smile, Users, Shield, ArrowRight } from 'lucide-react';
+import { MessageSquareText, Smile, Users, Shield, ArrowRight, Github } from 'lucide-react';
 
 
 import Link from "next/link";
@@ -55,9 +55,9 @@ export default function Home() {
     // Users count animation
     const usersInterval = setInterval(() => {
       setAnimatedCount(prev => {
-        if (prev < 5000) return prev + 100;
+        if (prev < 100) return prev + 5;
         clearInterval(usersInterval);
-        return 5000;
+        return 100;
       });
     }, 20);
 
@@ -140,6 +140,7 @@ export default function Home() {
               <Link href="/signup" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
                 Sign Up Free
               </Link>
+              <Link href="https://github.com/rayyshen/clearchat/" target="_blank"><Github></Github></Link>
             </div>
           </div>
         </header>

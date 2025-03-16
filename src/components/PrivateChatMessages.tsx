@@ -15,6 +15,7 @@ interface Props {
 
 const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMessage }: Props) => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const streamRef = useRef<MediaStream | null>(null);
     const [messages, setMessages] = useState<PrivateMessage[]>([]);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,7 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         const initializeVideo = async () => {
             try {
                 setIsLoading(true);
-                const stream = await navigator.mediaDevices.getUserMedia({
+                const mediaStream = await navigator.mediaDevices.getUserMedia({
                     video: {
                         width: 128,
                         height: 96,
@@ -33,8 +34,9 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
                     }
                 });
                 if (videoRef.current) {
-                    videoRef.current.srcObject = stream;
+                    videoRef.current.srcObject = mediaStream;
                 }
+                streamRef.current = mediaStream;
                 setError(null);
             } catch (err) {
                 setError('Camera access denied');
@@ -48,10 +50,15 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
 
         // Cleanup
         return () => {
-            const stream = videoRef.current?.srcObject as MediaStream;
-            stream?.getTracks().forEach(track => track.stop());
+            if (streamRef.current) {
+                streamRef.current.getTracks().forEach(track => track.stop());
+                streamRef.current = null;
+            }
+            if (videoRef.current) {
+                videoRef.current.srcObject = null;
+            }
         };
-    }, []);
+    }, []); // Empty dependency array
 
     // Autoscroll
     const scrollToBottom = () => {
@@ -77,9 +84,9 @@ const PrivateChatMessages = ({ chatId, currentUser, onSend, newMessage, setNewMe
         return () => unsubscribe();
     }, [chatId]);
 
-    const formatTime = (timestamp: Date) => {
+    const formatTime = (timestamp: any) => {
         if (!timestamp) return '';
-        const date = timestamp;
+        const date = timestamp.toDate();
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     };
 

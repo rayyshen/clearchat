@@ -7,7 +7,7 @@ import { UserProfile } from "../types/user";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import { MessageSquareText, ArrowRight, Check, User, Mail, Lock } from 'lucide-react';
+import { MessageSquareText, ArrowRight, User, Mail, Lock } from 'lucide-react';
 
 const SignUpPage: React.FC = () => {
   const [email, setEmail] = useState("");
