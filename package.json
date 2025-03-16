@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
     "@tensorflow/tfjs": "^4.22.0",
     "face-api.js": "^0.20.0",
     "firebase": "^11.4.0",
