@@ -1,12 +1,8 @@
-# [🔎💬  ClearChat](https://hack.ray-shen.me/)
+# [🔎💬  ClearChat]
 
 ClearChat is a messaging app designed to revolutionize digital communication by integrating real-time facial sentiment analysis into every chat. By capturing the sender’s genuine emotional response through advanced AI-driven sentiment analysis, each message carries authentic emotional context, reducing misunderstandings and enhancing empathy between users. In an era where digital conversations often obscure genuine emotions, ClearChat bridges the gap, fostering more transparent, meaningful, and human connections. 
 
 Created at [Scrapyard NoVA](https://scrapyard.hackclub.com/nova)
-
-## [🌍 Live demo](https://hack.ray-shen.me/)
-
-Create an account and start chatting with friends at https://hack.ray-shen.me/
 
 ## 📦 Install ClearChat locally
 
